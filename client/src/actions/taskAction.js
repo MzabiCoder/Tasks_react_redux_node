@@ -25,12 +25,12 @@ export const delTask = id => async dispatch => {
     })
 }
 
-export const addTask = task => dispatch => {
+export const addTask = task => async dispatch => {
    
-    axios.post('/api/tasks', task)
-        .then(res => dispatch({
+    const res= await axios.post('/api/tasks', task)
+        dispatch({
             type: ADD_TASK,
             payload:res.data
-    }))
+    })
 }
 

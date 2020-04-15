@@ -1,6 +1,7 @@
 const expess = require('express')
 const router = expess.Router()
-const Task=require('../../models/Task')
+const Task = require('../../models/Task')
+const auth=require('../../middleware/authm')
 
 
 //@route GET api/tasks
@@ -22,7 +23,7 @@ router.get('/',async (req, res) => {
 
 //@route POST api/tasks
 //@desc create  task
-router.post('/',async (req, res) => {
+router.post('/',auth,async (req, res) => {
     const {name}=req.body
     try {
         
@@ -38,7 +39,7 @@ router.post('/',async (req, res) => {
 
 //@route DELETE api/tasks
 //@desc delete  task
-router.delete('/:id',async (req, res) => {
+router.delete('/:id',auth,async (req, res) => {
   
     try {
         
